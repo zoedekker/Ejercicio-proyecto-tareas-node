@@ -19,7 +19,6 @@ export const registrarUsuario = async (req, res)=>{
 
         const nuevo_usuario = new usuarios({
             usuario,
-            nombre,
             email,
             password: hash
         })
@@ -39,10 +38,10 @@ export const registrarUsuario = async (req, res)=>{
 
 export const iniciar_Sesion = async (req, res)=>{
     try{
-        const {usuario, nombre, email, password }= req.body
-        const exist = await usuarios.findOne({email})
+        const {email, password }= req.body
+        const usuario = await usuarios.findOne({email})
 
-        if(!exist){
+        if(!usuario){
             return res.status(401).json({
                 message: "Usuario No encontrado"
             })
@@ -66,7 +65,7 @@ export const iniciar_Sesion = async (req, res)=>{
         })
     }catch(error){
         response.status(500).json({
-            message: "error", error 
+            message: "error del servidor", error 
         })
 
     }

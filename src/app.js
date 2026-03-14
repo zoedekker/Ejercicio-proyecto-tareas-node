@@ -5,9 +5,8 @@ import cors from 'cors' //para poder peticiones desde cualquier navegador al bac
 import { conectar } from './config/db.js'
 import path from 'path'
 import { fileURLToPath } from 'url' //importo para contener ruta de archivo actual //file://c:Users\ZKMA
-
 import authroutes from './routes/auth.routes.js'
-
+// import {env} from 'env-var'
 
 config()
 
@@ -27,12 +26,14 @@ const __dirname = path.dirname(__filename)
 
 console.log(path.join((__dirname),'../public'))
 
+
+app.use('/api/tarea', router)
+app.use('/api', authroutes)
+
 app.use(express.static(path.join(__dirname, "../public"))) //Por defecto el navegador siempre busca el index.html para pagina principal
 
 
 
-app.use('/api/tarea', router)
-app.use('/api', authroutes)
 
 
 

@@ -30,7 +30,7 @@ const obtenertarea = async (req, rest, next)=>{
 
 //Creamos la ruta para obtener una tarea por id ^^^^
 router.get('/:id', obtenertarea, async(req, res)=>{
-    res.json(res.tarea)
+    res.json(res.tarea) // devuelve la tarea obtenida por el middleware  
 })
 
 
@@ -42,7 +42,7 @@ router.get('/', async(req, res)=> {
         const item= await tareas.find();
         res.status(200).json(item) //decimos que nos muestre la tarea en un formato JSON
     }catch(error){
-        res.status(500).josn({
+        res.status(500).json({
             message: error.message
         })
     }
